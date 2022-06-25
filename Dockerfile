@@ -4,8 +4,11 @@ WORKDIR /usr/src/app
 
 COPY . .
 
+ARG SERVER_URL
+ENV VITE_SERVER=${SERVER_URL}
 RUN npm install
 RUN npm run build
+RUN npm prune --production
 
 FROM node:16.13-alpine
 
